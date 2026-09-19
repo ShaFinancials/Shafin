@@ -1,0 +1,81 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Sha Financials / Quiet Confidence: light editorial surfaces, ink navy authority, Waypoint Brass guidance. */
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: "DM Sans", sans-serif;
+  --font-display: "Cormorant Garamond", serif;
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.985 0.008 84);
+  --foreground: oklch(0.22 0.028 245);
+  --card: oklch(0.995 0.004 84);
+  --card-foreground: oklch(0.22 0.028 245);
+  --popover: oklch(0.995 0.004 84);
+  --popover-foreground: oklch(0.22 0.028 245);
+  --primary: oklch(0.29 0.06 244);
+  --primary-foreground: oklch(0.985 0.008 84);
+  --secondary: oklch(0.95 0.025 225);
+  --secondary-foreground: oklch(0.29 0.06 244);
+  --muted: oklch(0.95 0.016 225);
+  --muted-foreground: oklch(0.49 0.028 245);
+  --accent: oklch(0.64 0.1 70);
+  --accent-foreground: oklch(0.18 0.04 245);
+  --border: oklch(0.89 0.018 228);
+  --input: oklch(0.89 0.018 228);
+  --ring: oklch(0.64 0.1 70);
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-background text-foreground; font-family: "DM Sans", sans-serif; }
+  button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+  button:not(:disabled), a[href], select:not(:disabled), input[type="checkbox"]:not(:disabled) { @apply cursor-pointer; }
+}
+
+/* Quiet Confidence component language: thin rules, soft paper, editorial spacing. */
+@layer components {
+  .container { width: 100%; max-width: 1280px; margin-inline: auto; padding-inline: 1.25rem; }
+  .display { font-family: "Cormorant Garamond", serif; font-weight: 600; letter-spacing: -0.035em; }
+  .eyebrow { font-size: .68rem; letter-spacing: .19em; text-transform: uppercase; font-weight: 700; color: #b88a4a; }
+  .section-pad { padding-block: 5.5rem; }
+  .paper-noise { position: relative; isolation: isolate; }
+  .paper-noise::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .22; z-index: -1; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.11'/%3E%3C/svg%3E"); }
+  .waypoint-line { position: relative; }
+  .waypoint-line::before { content: ""; position: absolute; left: 1.15rem; top: 2.7rem; bottom: 1rem; width: 1px; background: #c9a875; }
+  .pressable { transition: transform 180ms cubic-bezier(.23,1,.32,1), box-shadow 180ms ease, background-color 180ms ease; }
+  .pressable:active { transform: scale(.97); }
+  .lift:hover { transform: translateY(-4px); box-shadow: 0 18px 42px rgba(23, 48, 76, .10); }
+  .lift { transition: transform 220ms cubic-bezier(.23,1,.32,1), box-shadow 220ms ease; }
+  .focus-ring:focus-visible { outline: 3px solid rgba(184,138,74,.55); outline-offset: 4px; }
+}
+
+@media (min-width: 640px) { .container { padding-inline: 2rem; } .section-pad { padding-block: 7rem; } }
+@media (min-width: 1024px) { .container { padding-inline: 3.5rem; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; } }
